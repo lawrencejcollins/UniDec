@@ -103,6 +103,70 @@ class SeqChrom(ChromEngine):
                         "Units":{'dtype':str, 'long':True, 'short_row':True, 'short_col':True}}
                         # Substrate conc required if doing michaelis-menten analysis on same plate.
 
+
+    def get_chrom_peaks(self, window=None, lb = None, ub = None): # LJC Edit
+        # Cleanup TIC Data
+        ticdat = deepcopy(self.ticdat)
+        ticdat = ud.gsmooth(ticdat, 2)
+        ticdat[:, 1] -= np.nanmin(ticdat[:, 1])
+        # ticdat = ud.gaussian_backgroud_subtract(ticdat, 100)
+        maxval = np.amax(ticdat[:, 1])
+        ticdat[:, 1] /= maxval
+        maxt = np.nanmax(ticdat[:, 0])
+        mint = np.nanmin(ticdat[:, 0])
+
+        # Set Window
+        if window is None:
+            window = self.config.chrom_peak_width
+
+        # Set Threshold
+        noise = ud.noise_level2(ticdat, percent=0.50)
+        print("Noise Level:", noise, "Window:", window)
+
+        # Detect Peaks
+        peaks = ud.peakdetect_nonlinear(ticdat, window=window, threshold=noise)
+        # peaks = ud.peakdetect(ticdat, window=window, threshold=noise)
+        # Filter Peaks
+        goodpeaks = []
+        tranges = []
+        diffs = np.diff(ticdat[:, 0])
+        for p in peaks:
+            fwhm, range = ud.calc_FWHM(p[0], ticdat)
+            index = ud.nearest(ticdat[:, 0], p[0])
+            if index >= len(diffs):
+                index = len(diffs) - 1
+            localdiff = diffs[index]
+            if p[0] - fwhm / 2. < mint or p[0] + fwhm / 2. > maxt or fwhm > 4 * window or fwhm < localdiff * 2 or range[
+                0] == p[0] or range[1] == p[0]:
+                print("Bad Peak", p, fwhm, range)
+                pass
+            else:
+                print(p[0], fwhm)
+                goodpeaks.append(np.array(p))
+                tranges.append(range)
+
+        tranges = np.array(tranges)
+        goodpeaks = np.array(goodpeaks)
+        goodpeaks = goodpeaks[np.where(goodpeaks[:, 0] > lb)]
+        self.chrompeaks = goodpeaks
+        self.chrompeaks_tranges = tranges
+        if lb != None:
+            tranges = tranges[np.all(tranges > lb, axis = 1)]
+            self.chrompeaks_tranges = tranges
+        if ub != None:
+            tranges = tranges[np.all(tranges < ub, axis = 1)]
+            self.chrompeaks_tranges = tranges
+
+        return goodpeaks, tranges
+
+    def add_chrom_peaks2(self): # LJC Edit
+        # self.get_chrom_peaks()
+        times = self.chrompeaks_tranges
+        self.data.clear()
+        for i, t in enumerate(times):
+            data = self.get_data_from_times(t[0], t[1])
+            self.data.add_data(data, name=str(t[0]), attrs=self.attrs, export=False)
+
     def get_files(self, directory, filetype):
         paths = []
         for dname, dirs, files in os.walk(directory):
@@ -113,8 +177,8 @@ class SeqChrom(ChromEngine):
                     paths.append(path)
         return paths
 
-    def load_multi_single(self, directory, t0 = 1.9, t1 = 2.1, load_hdf5=False,
-                        clear_hdf5=True):
+    def load_multi_single(self, directory, t0 = 1.9, t1 = 2.1, load_hdf5=True,
+                        clear_hdf5=False):
         paths = self.get_files(directory, filetype="mzML")
 
         get_data_from_times = t0, t1
@@ -124,7 +188,7 @@ class SeqChrom(ChromEngine):
 
     def load_multi_mzml(self, paths, chom_peak_width = 0.2,
                         chrom_lb = 1, chrom_ub = 5.5, plot = False,
-                        name = "", load_hdf5 = False, clear_hdf5 = True,
+                        name = "", load_hdf5 = True, clear_hdf5 = False,
                         get_data_from_times = None):
         """[summary]
 
@@ -377,7 +441,8 @@ class SeqChrom(ChromEngine):
         self.config.peakthresh = peakthresh
         # self.config.nativeub = nativeub
         # self.config.nativelb = nativelb
-        self.data.export_hdf5()
+        # self.data.export_hdf5(delete=False)
+        # self.config.write_hdf5()
 
     def process_maps(self, groupby = 'Reaction', variable = 'Time', matchfilenames = False):
         """[summary]
@@ -661,6 +726,7 @@ class SeqChrom(ChromEngine):
             if combine == False:
                 fig, ax = plt.subplots()
                 ax.plot(data[:, 0], data[:, 1], color = s.color, linewidth = 0.5)
+                ax.set_title(s.name)
 
             if combine == True:
                 ax.plot(data[:, 0]+xcounter, data[:, 1]+ycounter, color = s.color, linewidth = 0.5, label = s.var1)
