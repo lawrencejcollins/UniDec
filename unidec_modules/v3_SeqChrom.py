@@ -1,6 +1,6 @@
 from numpy.lib.index_tricks import diag_indices_from
 from pandas.io.stata import value_label_mismatch_doc
-from unidec_modules.ChromEng2 import *
+from unidec_modules.ChromEng import *
 import plate_map as pm
 import pandas as pd
 import numpy as np
@@ -100,9 +100,46 @@ class SeqChrom(ChromEngine):
                         "Substrate Conc":{'dtype':float, 'long':True, 'short_row':True, 'short_col':True},
                         "Protein Conc":{'dtype':float, 'long':True, 'short_row':True, 'short_col':True},
                         "Catalyst Conc":{'dtype':float, 'long':True, 'short_row':True, 'short_col':True},
-                        "Units":{'dtype':str, 'long':True, 'short_row':True, 'short_col':True}}
+                        "Units":{'dtype':str, 'long':True, 'short_row':True, 'short_col':True},
+                        "Filename":{'dtype':str, 'long':True, 'short_row':True, 'short_col':True}}
                         # Substrate conc required if doing michaelis-menten analysis on same plate.
+    def load_mzml(self, path, load_hdf5=True, clear_hdf5 = True, *args, **kwargs):
 
+
+        self.path = path
+        name = os.path.splitext(path)[0]
+        if name[-5:].lower() == ".mzml":
+            name = name[:-5]
+        self.outpath = name + ".hdf5"
+        self.setup_filenames(self.outpath)
+        self.data.filename = self.outpath
+        hdf5 = False
+        self.clear()
+
+        if clear_hdf5:
+            try:
+                os.remove(self.outpath)
+            except:
+                print("hdf5 does not exist")
+
+        if os.path.isfile(self.outpath) and load_hdf5:
+            print('Opening HDF5 File:', self.outpath)
+            try:
+                self.open(self.outpath)
+                hdf5 = True
+            except Exception as e:
+                print("Error opening prior hdf5 file:", e)
+        if not os.path.isfile(self.outpath):
+            self.data.new_file(self.outpath)
+            self.open(self.outpath)
+
+        self.update_history()
+
+        self.chromdat = ud.get_importer(path)
+        self.tic = self.chromdat.get_tic()
+        self.ticdat = np.array(self.tic)
+
+        return hdf5
 
     def get_chrom_peaks(self, window=None, lb = None, ub = None): # LJC Edit
         # Cleanup TIC Data
@@ -167,6 +204,7 @@ class SeqChrom(ChromEngine):
             data = self.get_data_from_times(t[0], t[1])
             self.data.add_data(data, name=str(t[0]), attrs=self.attrs, export=False)
 
+        self.data.export_hdf5()
     def get_files(self, directory, filetype):
         paths = []
         for dname, dirs, files in os.walk(directory):
@@ -178,10 +216,11 @@ class SeqChrom(ChromEngine):
         return paths
 
     def load_multi_single(self, directory, t0 = 1.9, t1 = 2.1, load_hdf5=True,
-                        clear_hdf5=False):
+                        clear_hdf5=True):
         paths = self.get_files(directory, filetype="mzML")
 
         get_data_from_times = t0, t1
+        # TODO: if HDF5 exists skip loading step
         self.load_multi_mzml(paths, load_hdf5=load_hdf5, clear_hdf5=clear_hdf5,
                             get_data_from_times=get_data_from_times)
 
@@ -225,11 +264,14 @@ class SeqChrom(ChromEngine):
         self.clear()
 
         if clear_hdf5:
-            os.remove(self.outpath)
+            try:
+                os.remove(self.outpath)
+            except:
+                print("hdf5 does not exist")
 
         if os.path.isfile(self.outpath) and load_hdf5:
             print('Opening HDF5 File:', self.outpath)
-            print('Opening HDF5 File:', self.outpath)
+
             try:
                 self.open(self.outpath)
                 hdf5 = True
@@ -348,17 +390,32 @@ class SeqChrom(ChromEngine):
         self.pmap = pmap
         return self.speciesmap, self.pmap
 
+    def get_auto_peak_width2(self, set=True):
+        try:
+            fwhm, psfun, mid = ud.auto_peak_width(self.data.data2)
+            self.config.automzsig = fwhm
+            self.config.autopsfun = psfun
+            if set:
+                self.config.psfun = psfun
+                self.config.mzsig = fwhm
+            print("Automatic Peak Width:", fwhm)
+        except Exception as e:
+            print("Failed Automatic Peak Width:", e)
+            print(self.data.data2)
+
+
     def update_config(self, minmz = "", maxmz = "",
                         massub = 10000, masslb = 100000, peakthresh = 0.01,
                         subtype = 2, subbuff = 100, datanorm = 0,
                         numit = 100, massbins = 1, mzsig = 0, startz = 10,
-                        endz = 100, zzsig = 1, psig = 0, beta = 50,
+                        endz = 100, zzsig = 1, psig = 1, beta = 0,
                         psfun = 0, peaknorm = 0, peakwindow = 10,
                         exnorm = 0,numz = 50, mtabsig = 0.0, molig = 0.0,
                         mzbins = 0.0, msig=0.0, smooth = 0, reductionpercent = 0.0,
                         aggressive = 0, rawflag = 0, nativezub = 1000.0, nativezlb=-1000.0,
                         poolflag = 2, noiseflag = 0, linflag = 2, isotopemode=0,
-                        baselineflag = 1, orbimode=0):
+                        baselineflag = 1, orbimode=0, peakplotthresh = 0.1,
+                        adductmass = 1.007276467, intthresh = 0):
         """[summary]
 
         Args:
@@ -384,15 +441,17 @@ class SeqChrom(ChromEngine):
             peakwindow (int, optional): [description]. Defaults to 10.
             exnorm (int, optional): [description]. Defaults to 0.
         """
+
         self.config.minmz = minmz
         self.config.maxmz = maxmz
         self.config.subtype = subtype #  - subtract curved
         self.config.subbuff = subbuff # background subtraction amount (subtract curved) 0 = 0ff, 100 = good amount when on
         self.config.datanorm = datanorm # turn off
 
+        self.config.intthresh = intthresh
         # -- Deconvolution
         self.config.numit = numit # number of iterations
-
+        self.config.adductmass = adductmass
         # mass range (default = 5000.0 to 500000.0 Da)
         self.config.massub = massub # upper
         self.config.masslb = masslb # lower
@@ -405,22 +464,28 @@ class SeqChrom(ChromEngine):
         self.config.mtabsig = mtabsig
         self.config.molig = molig
         self.config.mzbins = mzbins
-        self.config.msig = msig
+        # self.config.msig = msig # fwhm
         self.config.reductionpercent = reductionpercent
         self.config.aggressive = aggressive
         self.config.rawflag = rawflag
         self.config.nativezub = nativezub
         self.config.nativezlb = nativezlb
-        self.config.poolflag = poolflag
+        self.config.poolflag = poolflag # m/z to mass transformation
         self.config.noiseflag = noiseflag
         self.config.linflag = linflag
         self.config.isotopemode = isotopemode
         self.config.baselineflag=baselineflag,
-        self.config.orbimode=0
+        self.config.orbimode=orbimode
+        self.peakplotthresh = peakplotthresh
 
         # FWHM
-        # self.get_auto_peak_width()
-        self.config.mzsig =mzsig
+        try:
+            self.get_auto_peak_width2()
+
+        except:
+            self.config.mzsig = 1
+            self.config.psfun = -1
+        # self.config.mzsig =mzsig
 
         # charge range
         self.config.startz = 10
@@ -431,7 +496,7 @@ class SeqChrom(ChromEngine):
         self.config.psig = psig # smooth nearby points (point smooth width, some = 1)
         self.config.beta = beta # suppress artifacts (beta, some = 50)
         self.config.smooth = smooth
-        self.config.psfun = psfun # Peak shape function (gaussian, lorentzian, split G/L)
+        # self.config.psfun = psfun # Peak shape function (gaussian, lorentzian, split G/L)
 
         # -- Peak Selection and plotting
         self.config.peaknorm = peaknorm # Normalise peaks (0 = off)
@@ -451,11 +516,12 @@ class SeqChrom(ChromEngine):
             groupby (str, optional): ['Reaction' or 'Substrate Conc']. Defaults to 'Reaction'.
         """
         # Reaction OR Substrate Conc
-
+        # TODO: Add check for same reaction name in species and reaction map.
+        # TODO: circumvent need for reaction name if all wells are same reaction.
         self.pmap2 = self.pmap[self.pmap['Type'] != 'empty']
         # self.pmap2.loc[:, 'Species'] = np.nan
 
-        for skey, sval in self.speciesmap.groupby(['Reaction']):
+        for skey, sval in self.speciesmap.groupby([groupby]):
             splist = [Species(spval.to_dict('records')[0], name = spkey) for spkey, spval in sval.groupby('Species')]
             splist = colorcodeclass(splist)
 
@@ -484,6 +550,8 @@ class SeqChrom(ChromEngine):
                 s.attrs['Variable 2'] = timevar
                 s.var2 = timevar
                 self.pmap2.loc[well_id, 'Spectra'] = s
+        else:
+            raise Exception("Reaction map not same length as spectra.")
 
 
 
@@ -729,7 +797,7 @@ class SeqChrom(ChromEngine):
                 ax.set_title(s.name)
 
             if combine == True:
-                ax.plot(data[:, 0]+xcounter, data[:, 1]+ycounter, color = s.color, linewidth = 0.5, label = s.var1)
+                ax.plot(data[:, 0]+xcounter, data[:, 1]+ycounter, color = s.color, linewidth = 0.5, label = s.name)
 
             ax.set_xlabel('Mass / Da')
             ax.set_ylabel('Intensity')
@@ -839,7 +907,7 @@ class SeqChrom(ChromEngine):
         for key, df in self.data_df.items():
 
             if plot_type =='bar':
-                df.plot.bar()
+                df.plot.bar(rot=0)
 
                 plt.ylabel("Percentage Intensity")
                 plt.title(key)
