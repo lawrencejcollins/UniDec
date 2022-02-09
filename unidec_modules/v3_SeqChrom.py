@@ -971,18 +971,20 @@ class SeqChrom(ChromEngine):
         # self.species_kinetics[rkey][species] = params
 
     def invalidate(self, name, group = 'Time'):
-
-        filt = self.pmap2.loc[:, group].astype(type(name))==name
-        try:
-            self.pmap2.loc[filt, 'Valid'] = False
-            print("{}:{} successfully invalidated".format(group, name))
-        except Exception:
-            print("Invalidation failed for pmap2")
-        try:
-            self.pmap.loc[filt, 'Valid'] = False
-            print("{}:{} successfully invalidated".format(group, name))
-        except Exception:
-            print("Invalidation failed for pmap")
+        if type(name) != list:
+            name = [name]
+        for n in name:
+            filt = self.pmap2.loc[:, group].astype(type(n))==n
+            try:
+                self.pmap2.loc[filt, 'Valid'] = False
+                print("{}:{} successfully invalidated".format(group, n))
+            except Exception:
+                print("Invalidation failed for pmap2")
+            try:
+                self.pmap.loc[filt, 'Valid'] = False
+                print("{}:{} successfully invalidated".format(group, n))
+            except Exception:
+                print("Invalidation failed for pmap")
 
     def _get_valid(self, pmap = "pmap2"):
         self.pmap3 = getattr(self, pmap)
