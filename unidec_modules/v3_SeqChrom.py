@@ -104,7 +104,16 @@ class SeqChrom(ChromEngine):
                         "Filename":{'dtype':str, 'long':True, 'short_row':True, 'short_col':True}}
                         # Substrate conc required if doing michaelis-menten analysis on same plate.
     def load_mzml(self, path, load_hdf5=True, clear_hdf5 = True, *args, **kwargs):
+        """[summary]
 
+        Args:
+            path ([type]): [description]
+            load_hdf5 (bool, optional): [description]. Defaults to True.
+            clear_hdf5 (bool, optional): [description]. Defaults to True.
+
+        Returns:
+            [type]: [description]
+        """
 
         self.path = path
         name = os.path.splitext(path)[0]
@@ -811,8 +820,8 @@ class SeqChrom(ChromEngine):
                         ax.scatter(p.mass, p.height, marker = '^', color = p.color, s=10)
                     if xlim != []:
                         ax.set_xlim(xlim[0], xlim[1])
-                        if combine == True:
-                            ax.set_xlim(xlim[0], xlim[1]+xcounter)
+                        # if combine == True:
+                        #     ax.set_xlim(xlim[0], xlim[1]+xcounter)
                     if show_ints == True:
                         ints = s.integrals[i][1]
                         if combine == False:
@@ -820,7 +829,7 @@ class SeqChrom(ChromEngine):
                         else:
                             ax.fill_between(ints[:, 0]+xcounter, ints[:, 1]+ycounter, ycounter, color = p.color, alpha = 0.25)
                             ax.legend()
-            xcounter+=data[:, 0].max()*0.05
+            xcounter+=data[:, 0].max()*0.01
             ycounter+=data[:, 1].max()*0.05
 
             if combine == False and export==True:
