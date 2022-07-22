@@ -1415,7 +1415,7 @@ class UniDec(UniDecEngine):
     '''
         return np.array(aligned), combined
 
-    
+
     def correlate_intensities(self, pmasses=None, x_range=None, window=None, ci=0.99, **kwargs):
         aligned, combined = self.align_peaks(pmasses=pmasses, x_range=x_range, window=window, norm=False)
         corrs = np.array([ud.correlation_integration(combined, spec, alpha=(1 - ci), **kwargs) for spec in aligned])

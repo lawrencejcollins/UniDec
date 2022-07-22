@@ -24,6 +24,14 @@ def colorcodeclass(lst, cmap = 'rainbow'):
     for i, s in enumerate(lst):
         s.color = colors[i]
     return lst
+def colorcodelist(lst, cmap = 'rainbow'):
+
+    cmap = plt.get_cmap(cmap)
+    colors = cmap(np.linspace(0, 1, len(lst)))
+    dct = {}
+    for i, s in enumerate(lst):
+        dct[s] = colors[i]
+    return dct
 
 class Species:
     def __init__(self, dictionary, name, speciesmap = None, pmap = None, peak = None, integral = []):
@@ -295,7 +303,7 @@ class SeqChrom(ChromEngine):
         ################################
         # open mzMLs
 
-
+        print(paths)
 
         if hdf5 == False:
             for i, p in enumerate(paths):
@@ -329,7 +337,7 @@ class SeqChrom(ChromEngine):
 
 
                 print(i)
-                print(len(self.data.spectra))
+                print("LENGTH: {}" .format(len(self.data.spectra)))
 
         ########################################
 
@@ -798,7 +806,21 @@ class SeqChrom(ChromEngine):
         if combine == True:
             fig, ax = plt.subplots(dpi = 100)
 
+
+        # strange way of plotting data so they overlay correctly
+        spectra = spectra[::-1]
+
+
+        ycounters=[]
         for s in spectra:
+            data=getattr(s, dtype)
+            ycounter+=data[:, 1].max()*0.05
+            ycounters.append(ycounter)
+        ycounters = ycounters[::-1]
+
+
+
+        for i, s in enumerate(spectra):
             data = getattr(s, dtype)
             if combine == False:
                 fig, ax = plt.subplots()
@@ -806,16 +828,17 @@ class SeqChrom(ChromEngine):
                 ax.set_title(s.name)
 
             if combine == True:
-                ax.plot(data[:, 0]+xcounter, data[:, 1]+ycounter, color = s.color, linewidth = 0.5, label = s.name)
+                # ax.plot(data[:, 0]+xcounter, data[:, 1]+ycounter, color = s.color, linewidth = 0.5, label = s.name)
+                ax.plot(data[:, 0], data[:, 1]+ycounters[i], color = s.color, linewidth = 0.5, label = s.name[:3])
 
             ax.set_xlabel('Mass / Da')
             ax.set_ylabel('Intensity')
             ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.0e'))
             ax.spines['right'].set_visible(False)
             ax.spines['top'].set_visible(False)
-
+            ax.legend(bbox_to_anchor=(1,1), loc="upper left")
             if dtype == 'massdat':
-                for i, p in enumerate(s.pks.peaks):
+                for x, p in enumerate(s.pks.peaks):
                     if combine == False:
                         ax.scatter(p.mass, p.height, marker = '^', color = p.color, s=10)
                     if xlim != []:
@@ -823,12 +846,13 @@ class SeqChrom(ChromEngine):
                         # if combine == True:
                         #     ax.set_xlim(xlim[0], xlim[1]+xcounter)
                     if show_ints == True:
-                        ints = s.integrals[i][1]
+                        ints = s.integrals[x][1]
                         if combine == False:
-                            ax.fill_between(ints[:, 0], ints[:, 1], color = p.color, alpha = 0.3)
+                            ax.fill_between(ints[:, 0], ints[:, 1], color = p.color, alpha = 0.1)
                         else:
-                            ax.fill_between(ints[:, 0]+xcounter, ints[:, 1]+ycounter, ycounter, color = p.color, alpha = 0.25)
-                            ax.legend()
+                            # ax.fill_between(ints[:, 0]+xcounter, ints[:, 1]+ycounter, ycounter, color = p.color, alpha = 0.25)
+                            ax.fill_between(ints[:, 0], ints[:, 1]+ycounters[i], ycounters[i], color = p.color, alpha = 0.25)
+                            ax.legend(bbox_to_anchor=(1,1), loc="upper left")
             xcounter+=data[:, 0].max()*0.01
             ycounter+=data[:, 1].max()*0.05
 
@@ -909,31 +933,51 @@ class SeqChrom(ChromEngine):
         #         plt.show()
         self.data_df = df_dict
 
-    def plot_data(self, plot_type = None, species = None, groupby = 'Time', datatype = 'percentage'):
+    def plot_data(self, plot_type = None, species = None, groupby = 'Time', datatype = 'percentage', cmap = None):
 
         self.extract_data(species = species, groupby=groupby, datatype=datatype)
 
         for key, df in self.data_df.items():
+            if cmap != None:
+                dct=colorcodelist(list(df.columns), cmap = cmap)
 
             if plot_type =='bar':
-                df.plot.bar(rot=0)
+                if cmap == None:
+                    df.plot.bar(rot=0)
+                else:
+                    df.plot.bar(rot=0, cmap=cmap)
 
                 plt.ylabel("Percentage Intensity")
                 plt.title(key)
                 plt.legend(bbox_to_anchor=(1,1), loc="upper left")
                 plt.show()
+            # if plot_type =='scatter':
+            #     for
+            #     df.plot.scatter(rot=0)
+
+            #     plt.ylabel("Percentage Intensity")
+            #     plt.title(key)
+            #     plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+            #     plt.show()
             else:
                 for species in df.columns:
                     group = np.array(df[species])
                     if ~np.all((group==0)):
 
                         if plot_type==None:
-                            df[species].plot(label = species)
+                            # df[species].plot.(label = species)
+                            if cmap==None:
+                                plt.scatter(np.array(df[species].index, dtype=float), group, label=species, marker='x')
+                            else:
+                                plt.scatter(np.array(df[species].index, dtype=float), group, label=species, marker='x',
+                                color = dct[species])
 
                         plt.xlabel("{}".format(groupby))
                         plt.ylabel("Percentage Intensity")
                         plt.title(key)
                         plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+                        # plt.ylim(0, 1.0)
+                        # plt.xlim(0, np.max(df[species].index))
                 plt.show()
 
     def initial_rate(self, thresh = 0.05, plot = True):
