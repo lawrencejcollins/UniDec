@@ -933,7 +933,8 @@ class SeqChrom(ChromEngine):
         #         plt.show()
         self.data_df = df_dict
 
-    def plot_data(self, plot_type = None, species = None, groupby = 'Time', datatype = 'percentage', cmap = None):
+    def plot_data(self, plot_type = None, species = None, groupby = 'Time', datatype = 'percentage',
+                  cmap = None, title = None):
 
         self.extract_data(species = species, groupby=groupby, datatype=datatype)
 
@@ -973,8 +974,13 @@ class SeqChrom(ChromEngine):
                                 color = dct[species])
 
                         plt.xlabel("{}".format(groupby))
-                        plt.ylabel("Percentage Intensity")
+                        if datatype=='perecntage':
+                            plt.ylabel("Percentage Intensity")
+                        else:
+                            plt.ylabel("Intensity")
                         plt.title(key)
+                        if title != None:
+                            plt.title(title)
                         plt.legend(bbox_to_anchor=(1,1), loc="upper left")
                         # plt.ylim(0, 1.0)
                         # plt.xlim(0, np.max(df[species].index))
