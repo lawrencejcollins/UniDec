@@ -1,12 +1,12 @@
 from numpy.lib.index_tricks import diag_indices_from
 from pandas.io.stata import value_label_mismatch_doc
-from unidec_modules.ChromEng import *
-import plate_map as pm
+from modules.ChromEng import *
+# import plate_map as pm
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from unidec_modules import unidectools as ud
+from modules import unidectools as ud
 from copy import deepcopy
 import os
 from datetime import datetime
