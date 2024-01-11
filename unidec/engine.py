@@ -9,11 +9,11 @@ import subprocess
 import zipfile
 import fnmatch
 import numpy as np
-from unidec.modules import unidecstructure, peakstructure, MassFitter
-import unidec.tools as ud
-import unidec.modules.IM_functions as IM_func
-import unidec.modules.MassSpecBuilder as MSBuild
-from unidec.modules.unidec_enginebase import UniDecEngine
+from modules import unidecstructure, peakstructure, MassFitter
+import tools as ud
+import modules.IM_functions as IM_func
+import modules.MassSpecBuilder as MSBuild
+from modules.unidec_enginebase import UniDecEngine
 
 # import modules.DoubleDec as dd
 

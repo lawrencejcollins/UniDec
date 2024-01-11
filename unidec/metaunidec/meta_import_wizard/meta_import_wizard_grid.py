@@ -1,6 +1,6 @@
 import wx
 import wx.grid
-from unidec.metaunidec.meta_import_wizard import MetaTagTypes as tt
+from metaunidec.meta_import_wizard import MetaTagTypes as tt
 
 
 class WizardGrid(wx.grid.Grid):

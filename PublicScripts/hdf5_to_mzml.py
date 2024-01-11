@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import h5py
 from pyopenms import *
-from unidec.modules import hdf5_tools as hd
+from modules import hdf5_tools as hd
 
 
 def write_hdf5_to_mzml(hdf5_path, outfile=None, plot=False):

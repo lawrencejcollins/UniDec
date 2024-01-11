@@ -2,18 +2,18 @@ import time
 import os
 import wx
 import numpy as np
-from unidec import engine
+import  engine
 
-from unidec.GUniDec import UniDecApp
+from GUniDec import UniDecApp
 from pubsub import pub
-import unidec.tools as ud
-from unidec.modules import CDEng
-from unidec.modules.gui_elements import CDWindow
+import tools as ud
+from modules import CDEng
+from modules.gui_elements import CDWindow
 import multiprocessing
-from unidec.modules import peakwidthtools
-from unidec.modules.unidec_presbase import UniDecPres
-from unidec.modules import CDCal
-from unidec.modules.isolated_packages import FileDialogs
+from modules import peakwidthtools
+from modules.unidec_presbase import UniDecPres
+from modules import CDCal
+from modules.isolated_packages import FileDialogs
 import platform
 
 

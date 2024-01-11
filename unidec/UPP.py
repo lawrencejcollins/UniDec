@@ -1,11 +1,11 @@
 import wx
 import pandas as pd
 from copy import deepcopy
-from unidec.modules.isolated_packages.spreadsheet import *
-from unidec.batch import UniDecBatchProcessor as BPEngine
-from unidec.batch import *
-from unidec.modules.html_writer import *
-from unidec.GUniDec import UniDecApp
+from modules.isolated_packages.spreadsheet import *
+from batch import UniDecBatchProcessor as BPEngine
+from batch import *
+from modules.html_writer import *
+from GUniDec import UniDecApp
 
 
 class HelpDlg(wx.Frame):

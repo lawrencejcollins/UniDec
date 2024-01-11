@@ -2,11 +2,11 @@
     MassLynx Python SDK
 """
 from ctypes import*
-from unidec.modules.waters_importer.MassLynxRawReader import MassLynxRawReader, MassLynxRawProcessor, MassLynxBaseType
+from modules.waters_importer.MassLynxRawReader import MassLynxRawReader, MassLynxRawProcessor, MassLynxBaseType
 
 class MassLynxRawScanReader(MassLynxRawReader):
     """Read masslynx scan data"""
-   
+
     def __init__(self, source ):
         super().__init__(source, MassLynxBaseType.SCAN)
 
@@ -80,11 +80,11 @@ class MassLynxRawScanReader(MassLynxRawReader):
         return masses, intensities
 
 
-    def ReadScanFlags( self, whichFunction, whichScan ):      
+    def ReadScanFlags( self, whichFunction, whichScan ):
         masses = []
         intensities = []
         flags = []
-           
+
         # create the retrun values
         size = c_int(0)
         pMasses = c_void_p()
@@ -114,7 +114,7 @@ class MassLynxRawScanReader(MassLynxRawReader):
     def ReadDriftScan( self, whichFunction, whichScan, whichDrift ):
         masses = []
         intensities = []
-               
+
         # create the retrun values
         size = c_int(0)
         pMasses = c_void_p()
@@ -179,11 +179,11 @@ class MassLynxRawScanReader(MassLynxRawReader):
     #def readDaughterScan( self, whichFunction, whichScan ):
     #    try:
     #        size = self.getScanSize( whichFunction,whichScan )
-            
+
     #    	# get the daughter scan size
     #        daughtersize = c_int(0)
-            
-    #        # get daughter size         
+
+    #        # get daughter size
     #        getDaughterScanSize =  RawReader.massLynxDll.getDaughterScanSize
     #        getDaughterScanSize.argtypes = [c_void_p, c_int, c_int, POINTER(c_int)]
     #        RawReader.CheckReturnCode( getDaughterScanSize(RawReader.getReader(self),whichFunction,whichScan, daughtersize) )
@@ -192,7 +192,7 @@ class MassLynxRawScanReader(MassLynxRawReader):
     #        masses = (c_float*size)()
     #        intensities = (c_float*size)()
     #        daughters = (c_float*daughtersize.value)()
-             
+
     #        # read daughter size
     #        readSpectrumDaughters = RawReader.massLynxDll.readSpectrumDaughters
     #        readSpectrumDaughters.argtypes = [c_void_p, c_int, c_int,  POINTER(c_float), POINTER(c_float), POINTER(c_float)]

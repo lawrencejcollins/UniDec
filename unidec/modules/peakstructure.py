@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 import string
 import math
-# import matplotlib.cm as cm
+import matplotlib.cm as cm
 import matplotlib as mpl
 from matplotlib.colors import Normalize
 import numpy as np
-from unidec import tools as ud
+import  tools as ud
 import pandas as pd
 from io import StringIO
 
@@ -185,8 +185,8 @@ class Peaks:
         except:
             pass
 
-        # self.colormap = cm.get_cmap(cmap, len(self.peaks))
-        self.colormap = mpl.colormaps[cmap].resampled(len(self.peaks))
+        self.colormap = cm.get_cmap(cmap, len(self.peaks))
+        # self.colormap = mpl.colormaps[cmap].resampled(len(self.peaks))
         if self.colormap is None:
             # self.colormap = cm.get_cmap(u"rainbow", len(self.peaks))
             self.colormap = mpl.colormaps[u"rainbow"].resampled(len(self.peaks))

@@ -1,6 +1,6 @@
 import numpy as np
 import wx
-from unidec.modules import unidecstructure, PlottingWindow, ColorPlot
+from modules import unidecstructure, PlottingWindow, ColorPlot
 
 
 class MassDefectCompareWindow(wx.Frame):

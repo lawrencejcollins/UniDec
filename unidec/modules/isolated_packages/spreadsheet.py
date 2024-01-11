@@ -1,15 +1,15 @@
 import wx.grid as gridlib
 import wx
-import unidec.modules.miscwindows as misc
+import modules.miscwindows as misc
 import pandas as pd
 import os
 import wx.lib.mixins.inspection
 import wx.html
 import webbrowser
-from unidec.modules.matchtools import file_to_df
+from modules.matchtools import file_to_df
 import numpy as np
 import math
-import unidec.tools as ud
+import tools as ud
 
 luminance_cutoff = 135
 white_text = wx.Colour(250, 250, 250)
@@ -748,11 +748,11 @@ class HtmlRenderer(wx.grid.GridCellRenderer):
 
     def on_open_link(self, event):
         print("Test")
-   
+
 # renderer = HtmlRenderer("<a href=\"http:\\www.google.com\">test</a>")
 # frame.ss.SetCellRenderer(0, 0, renderer)
 # frame.ss.SetReadOnly(0, 0)
-# frame.ss.Bind(wx.html.EVT_HTML_CELL_CLICKED, renderer.on_open_link)     
+# frame.ss.Bind(wx.html.EVT_HTML_CELL_CLICKED, renderer.on_open_link)
 '''
 
 

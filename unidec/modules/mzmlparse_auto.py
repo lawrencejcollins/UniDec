@@ -1,8 +1,8 @@
 __author__ = 'Michael.Marty'
 
-from unidec.tools import get_importer
-from unidec.modules.mzMLimporter import *
-from unidec.modules.hdf5_tools import replace_dataset
+from tools import get_importer
+from modules.mzMLimporter import *
+from modules.hdf5_tools import replace_dataset
 import os
 import fnmatch
 import h5py

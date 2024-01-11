@@ -6,9 +6,9 @@ import time
 
 import scipy.ndimage.filters as filt
 
-from unidec.modules import unidecstructure
-from unidec.modules import PlottingWindow
-from unidec import tools as ud
+from modules import unidecstructure
+from modules import PlottingWindow
+import  tools as ud
 
 
 def make_pmat(mzgrid, fwhm):

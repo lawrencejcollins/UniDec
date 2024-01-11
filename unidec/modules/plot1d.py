@@ -7,7 +7,7 @@ import matplotlib.colorbar as colorbar
 import matplotlib as mpl
 import matplotlib.cm as cm
 from matplotlib.patches import Rectangle
-from unidec.modules.PlotBase import PlotBase
+from modules.PlotBase import PlotBase
 
 
 class Plot1dBase(PlotBase):

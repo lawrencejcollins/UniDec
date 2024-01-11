@@ -3,9 +3,9 @@ import threading
 import multiprocessing
 import wx
 
-from unidec.modules.tims_import_wizard import import_wizard_treectrl
-from unidec.modules.tims_import_wizard import import_wizard_grid, data_importer
-from unidec.modules.isolated_packages import FileDialogs
+from modules.tims_import_wizard import import_wizard_treectrl
+from modules.tims_import_wizard import import_wizard_grid, data_importer
+from modules.isolated_packages import FileDialogs
 
 
 class ImportWizard(wx.Frame):

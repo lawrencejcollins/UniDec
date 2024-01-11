@@ -1,14 +1,14 @@
 import os
 import numpy as np
 import wx
-from unidec.modules import unidecstructure, PlottingWindow
-import unidec.tools as ud
-import unidec.modules.masstools as masstools
+from modules import unidecstructure, PlottingWindow
+import tools as ud
+import modules.masstools as masstools
 # import matplotlib.cm as cm
 import matplotlib as mpl
-from unidec.modules.isolated_packages import FileDialogs
+from modules.isolated_packages import FileDialogs
 from matplotlib.ticker import FixedLocator
-from unidec.modules.isolated_packages import MD_Fitter as mf, spreadsheet
+from modules.isolated_packages import MD_Fitter as mf, spreadsheet
 
 __author__ = 'Michael.Marty'
 

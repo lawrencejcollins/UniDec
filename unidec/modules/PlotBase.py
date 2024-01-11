@@ -8,7 +8,7 @@ import io
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 # noinspection PyUnresolvedReferences
 import numpy as np
-from unidec.modules.isolated_packages.ZoomCommon import *
+from modules.isolated_packages.ZoomCommon import *
 
 rcParams['ps.useafm'] = True
 rcParams['ps.fonttype'] = 42

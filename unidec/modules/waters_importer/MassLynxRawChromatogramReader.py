@@ -3,7 +3,7 @@
 """
 
 from ctypes import*
-from unidec.modules.waters_importer.MassLynxRawReader import MassLynxRawReader, MassLynxBaseType
+from modules.waters_importer.MassLynxRawReader import MassLynxRawReader, MassLynxBaseType
 
 #from MassLynxInfoReader import *
 
@@ -11,12 +11,12 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
     """Read masslynx chromatogram data"""
     def __init__(self, source ):
         super().__init__(source, MassLynxBaseType.CHROM)
-   
+
     #@classmethod
     #def CreateFromPath( cls, path ):                      # alternative constructor - pass class to constructor
     #    return cls(MassLynxRawReader.fromPath( path, 3 ))                     # initalise with reader
 
-    #@classmethod                 
+    #@classmethod
     #def CreateFromReader( cls, sourceReader ):                  # alternative constructor - pass class to constructor
     #     return cls(MassLynxRawReader.fromReader( sourceReader, 3 ))                     # initalise with reader
 
@@ -28,7 +28,7 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
         size = c_int(0)
         pTimes = c_void_p()
         pIntensities = c_void_p()
-            
+
         # read tic
         readTIC = MassLynxRawReader.massLynxDll.readTICChromatogram
         readTIC.argtypes = [c_void_p, c_int, POINTER(c_void_p), POINTER(c_void_p), POINTER(c_int)]
@@ -55,7 +55,7 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
         size = c_int(0)
         pTimes = c_void_p()
         pIntensities = c_void_p()
-            
+
         # read tic
         readBPI = MassLynxRawReader.massLynxDll.readBPIChromatogram
         readBPI.argtypes = [c_void_p, c_int, POINTER(c_void_p), POINTER(c_void_p), POINTER(c_int)]
@@ -82,7 +82,7 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
         # just call multiple mass with list of 1
         whichMasses = [whichMass]
         times, intensities =  self.ReadMassChromatograms( whichFunction, whichMasses, massTollerance, daughters )
-    
+
         return times, intensities[0]
 
     def ReadMassChromatograms( self, whichFunction, whichMasses, massTollerance, daughters ):
@@ -111,7 +111,7 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
 
         # fill in the mass chroms and free memory
         pI = cast(pIntensities ,POINTER(c_float))
-        for index in range(0, numMasses ):  
+        for index in range(0, numMasses ):
             intensities.append( pI[index * size.value :(index + 1)* size.value ])
 #            MassLynxRawReader.ReleaseMemory( ppIntensities[ index] )
         MassLynxRawReader.ReleaseMemory( pIntensities )
@@ -149,11 +149,11 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
    #         readMRM = RawReader.massLynxDll.readMRMChromatogram
    #         readMRM.argtypes = [c_void_p, c_int, c_int, POINTER(c_float), POINTER(POINTER(c_float))]
    #         RawReader.CheckReturnCode( readMRM( RawReader.getReader(self), whichFunction, whichMRM, times, intensities)) # test with invalid MRM
-        
+
    #     except MassLynxException as e:
    #         e.Handler()
    #         return [], []
-    
+
    #     return list(times), list(intensities)
 
 
@@ -169,7 +169,7 @@ class MassLynxRawChromatogramReader(MassLynxRawReader):
    #         intensities = (POINTER(c_float) * numberMRMs)()
    #         for index in range(0, numberMRMs ):
    #             intensities[ index ] = (c_float * scans)()
-     
+
    #         readMRMs = RawReader.massLynxDll.readMRMChromatograms
    #         readMRMs.argtypes = [c_void_p, c_int, c_int, POINTER(c_float), POINTER(POINTER(c_float))]
    #         RawReader.CheckReturnCode( readMRMs( RawReader.getReader(self), whichFunction, numberMRMs, times, intensities,))

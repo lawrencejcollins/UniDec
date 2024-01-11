@@ -2,14 +2,14 @@ import os
 import time
 
 import numpy as np
-import unidec.tools as ud
+import tools as ud
 import platform
 import matplotlib.cm as cm
 import matplotlib as mpl
 from matplotlib.pyplot import colormaps
 import h5py
-from unidec.modules.unidec_enginebase import version as version
-from unidec.modules.hdf5_tools import replace_dataset, get_dataset
+from modules.unidec_enginebase import version as version
+from modules.hdf5_tools import replace_dataset, get_dataset
 
 __author__ = 'Michael.Marty'
 

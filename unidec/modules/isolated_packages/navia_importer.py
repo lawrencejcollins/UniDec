@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import os
-from unidec import engine
+import  engine
 
 
 # Function to change aspects of config object

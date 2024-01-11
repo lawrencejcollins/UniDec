@@ -1,10 +1,10 @@
 import numpy as np
 from matplotlib.animation import FuncAnimation
 import wx
-from unidec.modules import PlottingWindow
-from unidec.modules import unidecstructure
-from unidec import tools as ud
-from unidec.modules.isolated_packages import FileDialogs
+from modules import PlottingWindow
+from modules import unidecstructure
+import  tools as ud
+from modules.isolated_packages import FileDialogs
 import os
 
 __author__ = 'Michael.Marty'
@@ -20,7 +20,7 @@ class AnimationWindow(wx.Frame):
         :param yvals: Titles for the plots.
         :param mode: 1 = 1D plots, 2 = 2D plots
         :param args:
-        :param kwargs: 
+        :param kwargs:
         :return: None
         """
         wx.Frame.__init__(self, parent, title="Plot Animations", size=(-1, -1))

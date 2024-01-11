@@ -2,12 +2,12 @@ import os
 import numpy as np
 import wx
 from pubsub import pub
-from unidec.MetaUniDec import MetaUniDecBase
+from MetaUniDec import MetaUniDecBase
 import multiprocessing
-from unidec.modules.gui_elements.ChromWindow import ChromWindow
-from unidec.modules.isolated_packages import FileDialogs
-from unidec.modules.ChromEng import ChromEngine, chrom_file_exts
-from unidec import GUniDec
+from modules.gui_elements.ChromWindow import ChromWindow
+from modules.isolated_packages import FileDialogs
+from modules.ChromEng import ChromEngine, chrom_file_exts
+import  GUniDec
 
 
 class ChromApp(MetaUniDecBase):

@@ -1,5 +1,5 @@
 import wx
-import unidec.modules.isolated_packages.preset_manager as pm
+import modules.isolated_packages.preset_manager as pm
 import numpy as np
 import os
 

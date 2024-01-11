@@ -1,8 +1,8 @@
 from pyopenms import *
-import unidec.engine as unidec
+import engine as unidec
 import time
 import numpy as np
-import unidec.tools as ud
+import tools as ud
 
 
 def ms1_processing(path, outpath=None, fullms1=True, agressive_speed=False):

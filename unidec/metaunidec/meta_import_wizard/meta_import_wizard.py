@@ -2,10 +2,10 @@ import os
 import multiprocessing
 import wx
 import numpy as np
-from unidec.metaunidec.meta_import_wizard import meta_data_importer, meta_import_wizard_grid, \
+from metaunidec.meta_import_wizard import meta_data_importer, meta_import_wizard_grid, \
     meta_import_wizard_treectrl
-from unidec.modules.isolated_packages import FileDialogs
-from unidec.ImportWizard import ImportWizard as IW
+from modules.isolated_packages import FileDialogs
+from ImportWizard import ImportWizard as IW
 
 
 class ImportWizard(wx.Frame):

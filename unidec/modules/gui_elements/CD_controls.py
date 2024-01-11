@@ -1,6 +1,6 @@
 import wx
 import wx.lib.agw.foldpanelbar as fpb
-import unidec.tools as ud
+import tools as ud
 import numpy as np
 import time
 import wx.lib.scrolledpanel as scrolled
@@ -319,7 +319,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         self.ctlpeakwidthcheck = wx.CheckBox(panel2a, label="Use Automatic m/z Peak Width", style=wx.CHK_3STATE)
         self.parent.Bind(wx.EVT_CHECKBOX, self.on_pw_check, self.ctlpeakwidthcheck)
         sizercontrol2a.Add(self.ctlpeakwidthcheck, (i, 0), span=(1, 2), flag=wx.ALIGN_CENTER_VERTICAL)
-        i += 1        
+        i += 1
         '''
         panel2a.SetSizer(sizercontrol2a)
         sizercontrol2a.Fit(panel2a)
@@ -386,7 +386,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         i += 1
 
         '''
-        
+
         self.ctlmanualassign = wx.CheckBox(panel2b, label="Manual Mode")
         self.parent.Bind(wx.EVT_CHECKBOX, self.on_check_manual, self.ctlmanualassign)
         gbox2b.Add(self.ctlmanualassign, (i, 0), flag=wx.ALIGN_CENTER_VERTICAL)
@@ -402,7 +402,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         gbox2b.Add(mlsizer, (i, 0), span=(1, 2))
         i += 1
 
-        
+
         '''
         panel2b.SetSizer(gbox2b)
         gbox2b.Fit(panel2b)
@@ -621,7 +621,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
             '''
             self.ctlmasslistflag.SetValue(self.config.mfileflag)
             self.ctlmtabsig.SetValue(str(self.config.mtabsig))
-            self.ctlmanualassign.SetValue(self.config.manualfileflag)            
+            self.ctlmanualassign.SetValue(self.config.manualfileflag)
             '''
             self.ctlzbins.SetValue(str(self.config.CDzbins))
             self.ctlcentroid.SetValue(str(self.config.CDres))
@@ -714,9 +714,9 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         self.config.psfunz = self.ctlpsfun2.GetSelection()
         self.config.msig = ud.string_to_value(self.ctlmsig.GetValue())
         self.config.molig = ud.string_to_value(self.ctlmolig.GetValue())
-        '''          
+        '''
         self.config.mtabsig = ud.string_to_value(self.ctlmtabsig.GetValue())
-        self.config.mfileflag = int(self.ctlmasslistflag.GetValue())      
+        self.config.mfileflag = int(self.ctlmasslistflag.GetValue())
         self.config.manualfileflag = int(self.ctlmanualassign.GetValue())
         '''
         self.config.psig = ud.string_to_value(self.ctlpsig.GetValue())
@@ -841,10 +841,10 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         self.ctlpsfun.SetToolTip(wx.ToolTip("Expected peak shape.\nSee Tools>Peak Width Tool for more tools."))
         self.ctlzzsig.SetToolTip(wx.ToolTip(
             "Parameter for defining the width of the charge state smooth."
-            "\nUniDec will use a mean filter of width 2n+1 on log_e of the charge distribution")) 
+            "\nUniDec will use a mean filter of width 2n+1 on log_e of the charge distribution"))
         self.ctlmsig.SetToolTip(wx.ToolTip("Width of Mass Smooth Filter"))
         self.ctlmolig.SetToolTip(wx.ToolTip("Mass difference used for Mass Smooth Filter"))
-        
+
         self.ctlisotopemode.SetToolTip(wx.ToolTip(
             "Use isotopic distributions in deconvolution.\nOutput either monoisotopic or average masses"))
         self.ctlmanualassign.SetToolTip(wx.ToolTip("Use manual assignments. See Tools>Manual Assignment"))
@@ -857,7 +857,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
             "\n0 will shut it off."))
         self.ctlpselect.SetToolTip(wx.ToolTip(
             "Select whether to smooth nearby data points to have similar charge assignments"))
-        
+
         self.ctlpoolflag.SetToolTip(wx.ToolTip(
             "Sets type of conversion from m/z to mass.\nIntegration:\n\tEach m/z bin goes to the nearest mass bin"
             "\n\tBest for undersampled masses\nInterpolation:\n\tEach mass value interpolates its value in m/z space"
@@ -867,7 +867,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         self.ctlmsmoothcheck.SetToolTip(
             wx.ToolTip("Select whether to assume a smooth distribution spaced by a known mass difference"))
         self.ctlpeakwidthcheck.SetToolTip(
-            wx.ToolTip("Select whether to incorporated the automatic peak width in deconvolution"))    
+            wx.ToolTip("Select whether to incorporated the automatic peak width in deconvolution"))
         '''
         self.ctlnumit.SetToolTip(wx.ToolTip(
             "Maximum number of iterations. Note: Deconvolution will stop automically before this if it converges."))
@@ -1046,10 +1046,10 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
         self.parent.Bind(wx.EVT_TEXT, self.update_quick_controls, self.ctlmsig)
         self.parent.Bind(wx.EVT_TEXT, self.update_quick_controls, self.ctlmzsig)
         '''
-        
+
         self.parent.Bind(wx.EVT_TEXT, self.update_quick_controls, self.ctlbuff)
         self.parent.Bind(wx.EVT_RADIOBOX, self.update_quick_controls, self.ctlpsfun)
-        
+
         '''
 
     def update_quick_controls(self, e=None):
@@ -1112,7 +1112,7 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
                 self.ctlmsmoothcheck.Set3StateValue(2)
 
             '''
-            
+
 
             # PW box
             try:
@@ -1133,5 +1133,5 @@ class main_controls(wx.Panel):  # scrolled.ScrolledPanel):
                 self.ctlpeakwidthcheck.Set3StateValue(2)
                 pass
 
-                
+
             '''

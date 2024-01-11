@@ -1,6 +1,6 @@
 import numpy as np
 import os
-import unidec.tools as ud
+import tools as ud
 import scipy.optimize as opt
 
 

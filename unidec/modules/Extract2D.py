@@ -5,11 +5,11 @@ import wx
 # import matplotlib.cm as cm
 import matplotlib as mpl
 
-from unidec.modules import unidecstructure
-from unidec.modules import PlottingWindow
-from unidec.modules import miscwindows
-from unidec import tools as ud
-from unidec.modules.MassFitter import MassFitter
+from modules import unidecstructure
+from modules import PlottingWindow
+from modules import miscwindows
+import  tools as ud
+from modules.MassFitter import MassFitter
 
 __author__ = 'Michael.Marty'
 

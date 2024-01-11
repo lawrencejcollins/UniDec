@@ -5,9 +5,9 @@ import wx.grid
 #import matplotlib.cm as cm
 import matplotlib as mpl
 from matplotlib.colors import Normalize
-import unidec.tools as ud
+import tools as ud
 from copy import deepcopy
-from unidec import engine
+import  engine
 
 luminance_cutoff = 135
 white_text = wx.Colour(250, 250, 250)

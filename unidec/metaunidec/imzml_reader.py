@@ -3,8 +3,8 @@ import os
 from pyimzml.ImzMLParser import ImzMLParser
 from pyimzml.ImzMLWriter import ImzMLWriter
 import h5py
-import unidec.tools as ud
-from unidec.modules.hdf5_tools import replace_dataset
+import tools as ud
+from modules.hdf5_tools import replace_dataset
 
 
 class Imzml_Reader:
@@ -64,7 +64,7 @@ class Imzml_Reader:
         hdf.close()
 
 def hdf5_to_imzml(path, outpath):
-    from unidec.metaunidec.mudeng import MetaUniDec
+    from metaunidec.mudeng import MetaUniDec
     eng = MetaUniDec()
     eng.open(path)
 

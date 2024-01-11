@@ -1,8 +1,8 @@
 import wx
 import wx.lib.mixins.listctrl as listmix
-from unidec.modules import PlottingWindow
-from unidec.modules.CDEng import UniDecCD
-from unidec.modules.isolated_packages import FileDialogs
+from modules import PlottingWindow
+from modules.CDEng import UniDecCD
+from modules.isolated_packages import FileDialogs
 import numpy as np
 
 __author__ = 'Michael.Marty'
@@ -339,7 +339,7 @@ if __name__ == "__main__":
     calpath = "C:\Data\CDMS\AqpZ_STORI\AqpZ_STORI\caltest.csv"
     app = wx.App(False)
     frame = CDCalDialog(None)
-    from unidec.modules.unidecstructure import UniDecConfig
+    from modules.unidecstructure import UniDecConfig
     config = UniDecConfig()
     frame.initialize_interface(config)
     frame.load_csv(calpath)

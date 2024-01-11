@@ -1,7 +1,7 @@
 import numpy as np
 import wx
-import unidec.tools as ud
-from unidec.modules import PlottingWindow, peakstructure, unidecstructure
+import tools as ud
+from modules import PlottingWindow, peakstructure, unidecstructure
 
 
 class SubDivFrame(wx.Frame):

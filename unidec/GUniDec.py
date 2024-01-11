@@ -3,29 +3,29 @@ import os
 import _thread
 import wx
 import numpy as np
-import unidec.engine as unidec
+import engine as unidec
 
 #
 from pubsub import pub
 
-import unidec.tools as ud
-import unidec.modules.IM_functions as IM_func
-import unidec.modules.IM_windows as IM_wind
-from unidec.modules import Extract2D, masstools, mainwindow, nativez, fft_window, GridDecon, isotopetools
-from unidec.modules import MassDefects, miscwindows
-from unidec.modules.isolated_packages import FileDialogs, texmaker_nmsgsb
-from unidec.modules.isolated_packages import score_window, navia_importer, texmaker, mql_tool
-import unidec.DataCollector as datacollector
-import unidec.ImportWizard as import_wizard
+import tools as ud
+import modules.IM_functions as IM_func
+import modules.IM_windows as IM_wind
+from modules import Extract2D, masstools, mainwindow, nativez, fft_window, GridDecon, isotopetools
+from modules import MassDefects, miscwindows
+from modules.isolated_packages import FileDialogs, texmaker_nmsgsb
+from modules.isolated_packages import score_window, navia_importer, texmaker, mql_tool
+import DataCollector as datacollector
+import ImportWizard as import_wizard
 # import UniMin
 from copy import deepcopy
 import platform
 import multiprocessing
-from unidec.modules.unidec_presbase import UniDecPres
-from unidec.iFAMS.wxiFAMS import iFAMS_Window
+from modules.unidec_presbase import UniDecPres
+from iFAMS.wxiFAMS import iFAMS_Window
 
 try:
-    import unidec.modules.thermo_reader.rawreader as rawreader
+    import modules.thermo_reader.rawreader as rawreader
 except Exception as e:
     print("Error importing Thermo Raw Reader, try installing MSFileReader from Thermo and pymsfilereader")
     print(e)

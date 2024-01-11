@@ -2,15 +2,15 @@ import os
 import subprocess
 import numpy as np
 
-import unidec.tools as ud
-from unidec.modules import peakstructure, unidec_enginebase
-from unidec.metaunidec.mudstruct import MetaDataSet
-import unidec.modules.mzmlparse_auto as automzml
+import tools as ud
+from modules import peakstructure, unidec_enginebase
+from metaunidec.mudstruct import MetaDataSet
+import modules.mzmlparse_auto as automzml
 import time
 
 try:
     from pyimzml.ImzMLWriter import ImzMLWriter
-    from unidec.metaunidec.imzml_reader import imzml_to_hdf5
+    from metaunidec.imzml_reader import imzml_to_hdf5
 except:
     print("pyimzML not found. Imaging features won't work.")
 
@@ -506,7 +506,7 @@ if __name__ == '__main__':
     eng.data.add_data(data3)
     eng.data.remove_data([0, 2])
     exit()
-    
+
     testdir = "C:\Python\\UniDec3\\unidec_src\\unidec\\x64\Release"
     testfile = "JAW.hdf5"
     testpath = os.path.join(testdir, testfile)

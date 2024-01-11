@@ -2,11 +2,11 @@ import os
 import wx
 from pubsub import pub
 import wx.lib.mixins.listctrl as listmix
-from unidec.modules import PlottingWindow
-from unidec import engine
-from unidec.modules.gui_elements import peaklistsort
-from unidec.modules.unidec_presbase import UniDecPres
-from unidec.modules.gui_elements.mainwindow_base import MainwindowBase
+from modules import PlottingWindow
+import  engine
+from modules.gui_elements import peaklistsort
+from modules.unidec_presbase import UniDecPres
+from modules.gui_elements.mainwindow_base import MainwindowBase
 import multiprocessing
 
 

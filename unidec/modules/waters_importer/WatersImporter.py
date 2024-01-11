@@ -1,10 +1,10 @@
 from copy import deepcopy
-from unidec import tools as ud
-from unidec.modules.mzMLimporter import merge_spectra
+import  tools as ud
+from modules.mzMLimporter import merge_spectra
 import numpy as np
 # import sys
 # import wx
-from unidec.modules.waters_importer import MassLynxRawScanReader as MLRSR, MassLynxRawInfoReader as MLRIR, \
+from modules.waters_importer import MassLynxRawScanReader as MLRSR, MassLynxRawInfoReader as MLRIR, \
     MassLynxRawChromatogramReader as MLCR
 
 import time

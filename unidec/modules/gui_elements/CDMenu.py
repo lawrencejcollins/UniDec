@@ -1,5 +1,5 @@
 import wx
-import unidec.modules.isolated_packages.preset_manager as pm
+import modules.isolated_packages.preset_manager as pm
 import numpy as np
 import os
 
@@ -35,14 +35,14 @@ class CDMenu(wx.Menu):
         self.menuSaveState = self.filemenu.Append(wx.ID_ANY, "Save Zip State File\tCtrl+S",
                                                   "Save program state to fresh folder")
         self.filemenu.AppendSeparator()
-        
+
         self.menuLoadDefault = self.filemenu.Append(wx.ID_ANY, "Load Default Config File",
                                                     "Load in default configuration file")
         self.menuSaveDefault = self.filemenu.Append(wx.ID_ANY, "Save Default Config File",
                                                     "Save default configuration file")
-        
+
         # Default Submenu
-        
+
         self.menuDefault2 = self.defaultmenu.Append(1001, "UniDec Default",
                                                     "General Default. Similar to High-Resolution Native.")
         self.menuDefault0 = self.defaultmenu.Append(999, "Low-resolution Native",
@@ -132,7 +132,7 @@ class CDMenu(wx.Menu):
         self.parent.Bind(wx.EVT_MENU, self.pres.on_auto_peak_width, self.menuAutoWidth)
 
         '''
-        
+
 
         self.menuManualFile = self.toolsmenu.Append(wx.ID_ANY, "Manual Assignment",
                                                     "Manually set UniDec to preassign specific m/z values")
@@ -193,10 +193,10 @@ class CDMenu(wx.Menu):
 
         '''
         # Analysis
-        
+
         self.parent.Bind(wx.EVT_MENU, self.pres.on_data_collector, self.menucollect)
-        
-        
+
+
         self.parent.Bind(wx.EVT_MENU, self.pres.on_plot_offsets, self.menuoffset)
         self.parent.Bind(wx.EVT_MENU, self.pres.on_charge_plot, self.menuchargeplot)
 
@@ -204,11 +204,11 @@ class CDMenu(wx.Menu):
                                                     "Collect results and extract values.  Experimental KD fitting.")
         self.analysismenu.AppendSeparator()
 
-        
+
 
         self.menufft = self.analysismenu.Append(wx.ID_ANY, "FFT Window")
         self.parent.Bind(wx.EVT_MENU, self.pres.on_fft_window, self.menufft)
-        
+
         self.analysismenu.AppendSeparator()
 
         self.menuchargeplot = self.analysismenu.Append(wx.ID_ANY, "Plot By Charge",
@@ -313,7 +313,7 @@ class CDMenu(wx.Menu):
         self.experimentalmenu.AppendSeparator()
         self.menurefresh = self.experimentalmenu.Append(wx.ID_ANY, "Refresh Acquiring Data")
         self.parent.Bind(wx.EVT_MENU, self.pres.on_refresh, self.menurefresh)
-        '''    
+        '''
         self.menucolor1d = self.experimentalmenu.Append(wx.ID_ANY, "Color Plots",
                                                         "Make a Different Colored 1D Plot")
 
@@ -344,7 +344,7 @@ class CDMenu(wx.Menu):
                                                          "MUST RUN AS ADMINISTRATOR")
         self.parent.Bind(wx.EVT_MENU, self.pres.register, self.menuRegister)
 
-        
+
         '''
         # Set Events for Menu Bar
 
@@ -355,7 +355,7 @@ class CDMenu(wx.Menu):
         self.parent.Bind(wx.EVT_MENU, self.pres.on_load_state, self.menuLoadState)
         self.parent.Bind(wx.EVT_MENU, self.pres.on_load_everything, self.menuLoadEverything)
         self.parent.Bind(wx.EVT_MENU, self.pres.on_save_state, self.menuSaveState)
-        
+
         self.parent.Bind(wx.EVT_MENU, self.pres.on_save_default, self.menuSaveDefault)
         self.parent.Bind(wx.EVT_MENU, self.pres.on_load_default, self.menuLoadDefault)'''
         '''

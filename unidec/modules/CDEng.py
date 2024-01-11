@@ -1,16 +1,16 @@
 import numpy as np
 import os
 import scipy
-import unidec.tools as ud
-from unidec.modules.unidec_enginebase import UniDecEngine
-from unidec.modules.thermo_reader.ThermoImporter import ThermoDataImporter
+import tools as ud
+from modules.unidec_enginebase import UniDecEngine
+from modules.thermo_reader.ThermoImporter import ThermoDataImporter
 from copy import deepcopy
 import matplotlib.pyplot as plt
 import scipy.fft as fft
-from unidec.modules import unidecstructure, peakstructure, IM_functions, fitting, i2ms_importer
-from unidec.modules import mzMLimporter
+from modules import unidecstructure, peakstructure, IM_functions, fitting, i2ms_importer
+from modules import mzMLimporter
 import time
-from unidec import engine
+import  engine
 from scipy.optimize import curve_fit
 
 xp = np

@@ -1,7 +1,7 @@
-from unidec.engine import UniDec
-from unidec.modules.matchtools import *
-from unidec.modules import peakstructure
-from unidec.tools import known_extensions, strip_char_from_string, find_kernel_file
+from engine import UniDec
+from modules.matchtools import *
+from modules import peakstructure
+from tools import known_extensions, strip_char_from_string, find_kernel_file
 import os
 import numpy as np
 import time

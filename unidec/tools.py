@@ -19,30 +19,30 @@ from scipy import signal
 from scipy import fftpack
 import matplotlib.cm as cm
 import matplotlib.colors as colors
-from unidec.modules.fitting import *
+from modules.fitting import *
 
 try:
-    from unidec.modules.mzMLimporter import mzMLimporter
+    from modules.mzMLimporter import mzMLimporter
 except:
     pass
-from unidec.modules import unidecstructure
+from modules import unidecstructure
 import fnmatch
-from unidec.modules.mzXML_importer import mzXMLimporter
+from modules.mzXML_importer import mzXMLimporter
 
 try:
-    from unidec.modules import data_reader
+    from modules import data_reader
 except:
     print("Could not import data reader: unidectools")
 
 # from modules.waters_importer.WatersImporter import WatersDataImporter as WDI
 try:
-    from unidec.modules.waters_importer.WatersImporter import WatersDataImporter as WDI
+    from .modules.waters_importer.WatersImporter import WatersDataImporter as WDI
 except:
     print("Could not import Waters Data Importer")
 
 # from modules.thermo_reader.ThermoImporter import ThermoDataImporter
 try:
-    from unidec.modules.thermo_reader.ThermoImporter import ThermoDataImporter
+    from modules.thermo_reader.ThermoImporter import ThermoDataImporter
 except:
     print("Could not import Thermo Data Importer")
 

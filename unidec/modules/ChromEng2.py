@@ -2,7 +2,7 @@ import os
 import numpy as np
 import unidec_modules.unidectools as ud
 from metaunidec.mudeng import MetaUniDec
-from unidec import UniDec
+import  UniDec
 from copy import deepcopy
 
 chrom_file_exts = [".raw", ".Raw", ".RAW", ".d", ".mzML.gz", ".mzML" ]
@@ -146,8 +146,8 @@ class ChromEngine(MetaUniDec):
         for i, t in enumerate(times):
             data = self.get_data_from_times(t[0], t[1])
             self.data.add_data(data, name=str(t[0]), attrs=self.attrs, export=False)
-    
-    def add_chrom_peaks2(self): # LJC Edit 
+
+    def add_chrom_peaks2(self): # LJC Edit
         # self.get_chrom_peaks()
         times = self.chrompeaks_tranges
         self.data.clear()
@@ -174,7 +174,7 @@ class ChromEngine(MetaUniDec):
 
 
     # -------------------------------------------------------------
-    def get_chrom_peaks(self, window=None, lb = None, ub = None): # LJC Edit 
+    def get_chrom_peaks(self, window=None, lb = None, ub = None): # LJC Edit
         # Cleanup TIC Data
         ticdat = deepcopy(self.ticdat)
         ticdat = ud.gsmooth(ticdat, 2)

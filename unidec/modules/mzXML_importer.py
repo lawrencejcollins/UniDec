@@ -1,4 +1,4 @@
-from unidec.modules.mzMLimporter import *
+from modules.mzMLimporter import *
 from pyteomics import mzxml
 
 __author__ = 'Michael.Marty'

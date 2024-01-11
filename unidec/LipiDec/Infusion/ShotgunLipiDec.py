@@ -1,5 +1,5 @@
 import matplotlib
-from unidec.LipiDec.Infusion.LipiDecEng import *
+from LipiDec.Infusion.LipiDecEng import *
 import time
 
 if __name__ == '__main__':

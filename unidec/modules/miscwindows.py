@@ -1,7 +1,7 @@
 import os
 import wx
-from unidec import tools as ud
-import unidec.modules.isolated_packages.spreadsheet as ss
+import  tools as ud
+import modules.isolated_packages.spreadsheet as ss
 
 __author__ = 'Michael.Marty'
 
@@ -329,7 +329,7 @@ class SaveFigureDialog(wx.Dialog):
         """
         Initialize the GUI.
         :param config: UniDecConfig
-        :return: 
+        :return:
         """
         self.config = config
         self.directory, self.header = os.path.split(self.config.outfname)

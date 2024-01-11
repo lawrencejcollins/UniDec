@@ -2,7 +2,7 @@ import wx
 import platform, os
 from pubsub import pub
 import numpy as np
-import unidec.modules.miscwindows as miscwindows
+import modules.miscwindows as miscwindows
 
 
 class MainwindowBase(wx.Frame):

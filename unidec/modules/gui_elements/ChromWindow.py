@@ -1,11 +1,11 @@
 import wx
-from unidec.metaunidec.gui_elements.list_ctrls import ListCtrlPanel
-from unidec.metaunidec.gui_elements.ud_cont_meta import main_controls
-from unidec.metaunidec.gui_elements.ud_menu_meta import meta_menu
-from unidec.modules.gui_elements import peaklistsort, mainwindow_base
+from metaunidec.gui_elements.list_ctrls import ListCtrlPanel
+from metaunidec.gui_elements.ud_cont_meta import main_controls
+from metaunidec.gui_elements.ud_menu_meta import meta_menu
+from modules.gui_elements import peaklistsort, mainwindow_base
 import wx.lib.scrolledpanel as scrolled
 from pubsub import pub
-from unidec.modules import PlottingWindow
+from modules import PlottingWindow
 
 
 class ChromWindow(mainwindow_base.MainwindowBase):

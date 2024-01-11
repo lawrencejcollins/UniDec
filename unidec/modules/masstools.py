@@ -5,11 +5,11 @@ import os
 import pandas as pd
 import numpy as np
 from scipy.interpolate import interp1d
-from unidec.modules.AutocorrWindow import AutocorrWindow
-from unidec.modules.isolated_packages import FileDialogs
-from unidec.modules.isolated_packages import biopolymer_calculator, spreadsheet
-from unidec.modules import matchtools
-import unidec.tools as ud
+from modules.AutocorrWindow import AutocorrWindow
+from modules.isolated_packages import FileDialogs
+from modules.isolated_packages import biopolymer_calculator, spreadsheet
+from modules import matchtools
+import tools as ud
 
 '''
 Module for window defining the oligomers, the expected masses, and for matching peaks to the defined oligomers.
@@ -1307,7 +1307,7 @@ class MassSelection(wx.Dialog):
 
 # Main App Execution
 if __name__ == "__main__":
-    from unidec import engine
+    import  engine
 
     eng = engine.UniDec()
     eng.open_file("C:\\Data\\NolanWashU\\20220429-S100B-Oligomer-1.txt")

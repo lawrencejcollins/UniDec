@@ -2,11 +2,11 @@ import os
 from copy import deepcopy
 import numpy as np
 import wx
-from unidec.modules import unidecstructure, PlottingWindow, MassDefectExtractor
-from unidec.modules import miscwindows
-import unidec.tools as ud
-from unidec.modules.MassFitter import MassFitter
-from unidec.modules.isolated_packages.MD_compare import MassDefectCompareWindow
+from modules import unidecstructure, PlottingWindow, MassDefectExtractor
+from modules import miscwindows
+import tools as ud
+from modules.MassFitter import MassFitter
+from modules.isolated_packages.MD_compare import MassDefectCompareWindow
 import matplotlib
 
 __author__ = 'Michael.Marty'

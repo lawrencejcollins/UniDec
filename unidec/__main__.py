@@ -1,6 +1,6 @@
 # noinspection PyUnresolvedReferences
 import sys
-from unidec.engine import *
+from engine import *
 
 
 def main(*args, **kwargs):

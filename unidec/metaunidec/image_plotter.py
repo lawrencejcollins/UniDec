@@ -4,9 +4,9 @@ import numpy as np
 from pubsub import pub
 import wx
 from scipy.spatial.distance import cosine
-from unidec.modules import PlottingWindow, unidecstructure
-import unidec.tools as ud
-from unidec.metaunidec import mudstruct
+from modules import PlottingWindow, unidecstructure
+import tools as ud
+from metaunidec import mudstruct
 
 __author__ = 'Michael.Marty'
 

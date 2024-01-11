@@ -1,11 +1,11 @@
 import numpy as np
-from unidec.modules.hdf5_tools import replace_dataset, get_dataset
+from modules.hdf5_tools import replace_dataset, get_dataset
 import h5py
 import pandas as pd
-import unidec.tools as ud
+import tools as ud
 import os
 from copy import deepcopy
-from unidec.modules.peakstructure import Peaks
+from modules.peakstructure import Peaks
 
 
 class MetaDataSet:

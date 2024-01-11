@@ -1,7 +1,7 @@
 from matplotlib.transforms import blended_transform_factory
 from matplotlib.patches import Rectangle
 # from pubsub import setupkwargs
-from unidec.modules.isolated_packages.ZoomCommon import *
+from modules.isolated_packages.ZoomCommon import *
 
 
 class ZoomSpan(ZoomCommon):

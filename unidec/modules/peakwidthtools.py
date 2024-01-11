@@ -1,7 +1,7 @@
 import wx
 import numpy as np
-from unidec.modules import PlottingWindow
-from unidec.tools import make_peak_shape, simp_string_to_value, isolated_peak_fit
+from modules import PlottingWindow
+from tools import make_peak_shape, simp_string_to_value, isolated_peak_fit
 
 __author__ = 'Michael.Marty'
 
@@ -134,7 +134,7 @@ class PeakTools1d(wx.Dialog):
         """
         Reset the plot to the full range.
         :param e: Unused event
-        :return: 
+        :return:
         """
         self.ctlmzsig.SetValue(str(self.config.mzsig))
         newmin = np.amin(self.data[:, 0])

@@ -12,13 +12,13 @@ from matplotlib.patches import Rectangle
 from pubsub import pub
 
 import multiprocessing
-from unidec.modules import UniFit, Extract2D, unidecstructure, PlotAnimations, PlottingWindow, IM_functions
-from unidec.modules import DoubleDec, MassDefects, miscwindows
-import unidec.tools as ud
-from unidec.modules.AutocorrWindow import AutocorrWindow
+from modules import UniFit, Extract2D, unidecstructure, PlotAnimations, PlottingWindow, IM_functions
+from modules import DoubleDec, MassDefects, miscwindows
+import tools as ud
+from modules.AutocorrWindow import AutocorrWindow
 import h5py
-from unidec.modules.hdf5_tools import get_dataset
-from unidec.modules.isolated_packages.MD_Fitter import MD_Fitter
+from modules.hdf5_tools import get_dataset
+from modules.isolated_packages.MD_Fitter import MD_Fitter
 
 __author__ = 'michael.marty'
 

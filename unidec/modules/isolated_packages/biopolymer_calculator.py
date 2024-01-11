@@ -1,5 +1,5 @@
 import wx
-from unidec.modules.biopolymertools import *
+from modules.biopolymertools import *
 
 
 class BiopolymerFrame(wx.Dialog):

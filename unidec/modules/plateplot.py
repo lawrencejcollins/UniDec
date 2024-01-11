@@ -1,8 +1,8 @@
 from matplotlib import colors as mcolors
 import numpy as np
 import wx
-from unidec.metaunidec.mudeng import MetaUniDec
-from unidec.modules import PlottingWindow, unidecstructure
+from metaunidec.mudeng import MetaUniDec
+from modules import PlottingWindow, unidecstructure
 
 __author__ = 'Michael.Marty'
 

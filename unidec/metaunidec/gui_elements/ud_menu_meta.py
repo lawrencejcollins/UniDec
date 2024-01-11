@@ -1,7 +1,7 @@
 import wx
 import os
 import numpy as np
-import unidec.modules.isolated_packages.preset_manager as pm
+import modules.isolated_packages.preset_manager as pm
 
 
 class meta_menu(wx.Menu):

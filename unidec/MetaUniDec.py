@@ -2,26 +2,26 @@ import subprocess
 import atexit
 import wx.html
 import numpy as np
-from unidec.metaunidec import mudview
-from unidec.metaunidec import mudeng, metafft
+from metaunidec import mudview
+from metaunidec import mudeng, metafft
 import time
 import os
 #
 from pubsub import pub
 
-import unidec.tools as ud
-from unidec.modules import Extract2D, masstools, PlotAnimations, IM_functions, fft_window, AutocorrWindow
-from unidec.modules import MassDefects, miscwindows
-from unidec.modules.isolated_packages import FileDialogs
-from unidec import DataCollector as datacollector
+import tools as ud
+from modules import Extract2D, masstools, PlotAnimations, IM_functions, fft_window, AutocorrWindow
+from modules import MassDefects, miscwindows
+from modules.isolated_packages import FileDialogs
+import  DataCollector as datacollector
 import multiprocessing
-from unidec.modules.unidec_presbase import UniDecPres
-from unidec.metaunidec import image_plotter
-from unidec.metaunidec import ultrameta
-from unidec.metaunidec.meta_import_wizard.meta_import_wizard import ImportWizard
-from unidec.modules.plot_waterfall import WaterfallFrame
-from unidec.modules.plateplot import PlateFrame
-from unidec.metaunidec.mudhelp import HelpDlg
+from modules.unidec_presbase import UniDecPres
+from metaunidec import image_plotter
+from metaunidec import ultrameta
+from metaunidec.meta_import_wizard.meta_import_wizard import ImportWizard
+from modules.plot_waterfall import WaterfallFrame
+from modules.plateplot import PlateFrame
+from metaunidec.mudhelp import HelpDlg
 
 # import FileDialog  # Needed for pyinstaller
 

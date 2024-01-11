@@ -1,6 +1,6 @@
 from multiplierz.mzAPI import mzFile
-from unidec import tools as ud
-from unidec.modules.mzMLimporter import merge_spectra
+import  tools as ud
+from modules.mzMLimporter import merge_spectra
 from copy import deepcopy
 import numpy as np
 import time

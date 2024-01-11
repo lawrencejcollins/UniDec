@@ -1,6 +1,6 @@
 import numpy as np
-from unidec import tools as ud
-from unidec.modules import isotopetools as iso
+import  tools as ud
+from modules import isotopetools as iso
 
 __author__ = 'Michael.Marty'
 

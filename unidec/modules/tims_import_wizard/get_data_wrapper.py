@@ -1,10 +1,10 @@
 import os, subprocess, sys
 
 try:
-    from unidec.modules.waters_importer.WatersImporter import WatersDataImporter as WDI
+    from modules.waters_importer.WatersImporter import WatersDataImporter as WDI
 except Exception as e:
     print("Error importing Waters Importer, get_data_wrapper.py", e)
-import unidec.tools as ud
+import tools as ud
 import numpy as np
 
 

@@ -2,10 +2,10 @@ import os
 import numpy as np
 import wx
 
-from unidec.modules import unidecstructure, PlottingWindow
-import unidec.tools as ud
+from modules import unidecstructure, PlottingWindow
+import tools as ud
 
-from unidec.iFAMS import iFAMSfun
+from iFAMS import iFAMSfun
 
 
 class iFAMS_Window(wx.Frame):

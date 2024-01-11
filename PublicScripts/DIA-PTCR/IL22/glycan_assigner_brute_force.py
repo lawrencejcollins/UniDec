@@ -2,9 +2,9 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import unidec.engine as engine
+import engine as engine
 import pandas as pd
-from unidec.modules.matchtools import *
+from modules.matchtools import *
 
 # Idea do this same thing with other omics data (lipidomics, metabolomics, etc.)
 

@@ -6,20 +6,20 @@ import wx
 import wx.html
 import multiprocessing
 
-from unidec.modules.unidec_presbase import UniDecPres
-from unidec.modules.unidec_enginebase import UniDecEngine
+from modules.unidec_presbase import UniDecPres
+from modules.unidec_enginebase import UniDecEngine
 
-from unidec.UniDecCD import UniDecCDApp
-from unidec.GUniDec import UniDecApp
+from UniDecCD import UniDecCDApp
+from GUniDec import UniDecApp
 
-import unidec.DataCollector as datacollector
-from unidec import MetaUniDec as mudpres
-from unidec.ImportWizard import ImportWizard
-from unidec.metaunidec.meta_import_wizard.meta_import_wizard import ImportWizard as HDF5Wizard
-from unidec.metaunidec.ultrameta import DataCollector as UMDC
-from unidec.UniChrom import ChromApp
-from unidec.UPP import UPPApp
-from unidec.modules import unidecstructure
+import DataCollector as datacollector
+import  MetaUniDec as mudpres
+from ImportWizard import ImportWizard
+from metaunidec.meta_import_wizard.meta_import_wizard import ImportWizard as HDF5Wizard
+from metaunidec.ultrameta import DataCollector as UMDC
+from UniChrom import ChromApp
+from UPP import UPPApp
+from modules import unidecstructure
 import wx.py as py
 import os
 import sys

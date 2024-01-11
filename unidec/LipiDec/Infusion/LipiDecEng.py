@@ -1,12 +1,12 @@
 import numpy as np
-import unidec.tools as ud
+import tools as ud
 import molmass
 from copy import deepcopy
 import pandas as pd
 import os
 import time
 import matplotlib.pyplot as plt
-import unidec.modules.peakstructure as ps
+import modules.peakstructure as ps
 
 pd.set_option('mode.chained_assignment', None)
 

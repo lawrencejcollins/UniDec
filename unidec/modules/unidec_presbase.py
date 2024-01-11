@@ -1,12 +1,12 @@
 import wx
-from unidec.modules.isolated_packages import FileDialogs, biopolymer_calculator
-from unidec.modules import peakwidthtools
+from modules.isolated_packages import FileDialogs, biopolymer_calculator
+from modules import peakwidthtools
 import os
 import numpy as np
-import unidec.tools as ud
-from unidec.modules import ManualSelectionWindow, AutocorrWindow, peakstructure
-from unidec.modules import SubDiv, miscwindows
-from unidec.metaunidec.mudstruct import MetaDataSet
+import tools as ud
+from modules import ManualSelectionWindow, AutocorrWindow, peakstructure
+from modules import SubDiv, miscwindows
+from metaunidec.mudstruct import MetaDataSet
 import sys
 import getopt
 
@@ -698,7 +698,7 @@ class UniDecPres(object):
         self.on_charge_states(mass=mass)
 
     def register(self, e=None):
-        from unidec.modules.data_reader import register
+        from modules.data_reader import register
         register()
 
     def on_linreg(self, e=0):

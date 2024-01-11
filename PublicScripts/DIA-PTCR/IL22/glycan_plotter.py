@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import unidec.engine as engine
-import unidec.tools as ud
+import engine as engine
+import tools as ud
 
 os.chdir("C:\\Data\\Luis Genentech")
 

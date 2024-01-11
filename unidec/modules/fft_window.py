@@ -1,9 +1,9 @@
 import os
 import numpy as np
 import wx
-from unidec.modules import unidecstructure, PlottingWindow, fitting
-from unidec.modules import miscwindows
-from unidec.tools import win_fft_grid, nearest, peakdetect
+from modules import unidecstructure, PlottingWindow, fitting
+from modules import miscwindows
+from tools import win_fft_grid, nearest, peakdetect
 # import matplotlib.cm as cm
 import matplotlib as mpl
 

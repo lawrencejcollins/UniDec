@@ -3,12 +3,12 @@ import os
 import wx
 import wx.lib.scrolledpanel as scrolled
 
-from unidec.modules.gui_elements import CD_controls
-from unidec.modules.gui_elements import CDMenu
-from unidec.modules import PlottingWindow
-from unidec.modules import miscwindows
-from unidec.modules.gui_elements import peaklistsort
-from unidec.modules.gui_elements.mainwindow_base import MainwindowBase
+from modules.gui_elements import CD_controls
+from modules.gui_elements import CDMenu
+from modules import PlottingWindow
+from modules import miscwindows
+from modules.gui_elements import peaklistsort
+from modules.gui_elements.mainwindow_base import MainwindowBase
 
 __author__ = 'Michael.Marty'
 

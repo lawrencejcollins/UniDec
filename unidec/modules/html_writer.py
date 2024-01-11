@@ -9,7 +9,7 @@ import lxml.etree as ET
 from lxml.html.clean import Cleaner
 from io import StringIO, BytesIO
 import io
-import unidec.tools as ud
+import tools as ud
 import base64
 import webbrowser
 import os
@@ -168,15 +168,15 @@ def df_to_html(df, outfile=None, colors=None, index=True, sortable=True):
               x = rows[i].getElementsByTagName("TD")[n];
               y = rows[i + 1].getElementsByTagName("TD")[n];
               /* Check if the two rows should switch place,
-              based on the direction, asc or desc. 
+              based on the direction, asc or desc.
               Try to use a float. If not a float, use lower case: */
               xfloat = parseFloat(x.innerHTML)
               yfloat = parseFloat(y.innerHTML)
               if (isNaN(xfloat) || isNaN(yfloat)){
                 xfloat = x.innerHTML.toLowerCase()
                 yfloat = y.innerHTML.toLowerCase()
-              }  
-              
+              }
+
               if (dir == "asc") {
                 if (xfloat > yfloat) {
                   // If so, mark as a switch and break the loop:

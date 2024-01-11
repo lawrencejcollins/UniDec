@@ -7,9 +7,9 @@ from matplotlib.patches import Rectangle
 import matplotlib as mpl
 from scipy.spatial.distance import euclidean
 
-from unidec.modules import PlottingWindow
-from unidec.modules.isolated_packages import FileDialogs
-import unidec.tools as ud
+from modules import PlottingWindow
+from modules.isolated_packages import FileDialogs
+import tools as ud
 
 __author__ = 'Michael.Marty'
 
@@ -908,7 +908,7 @@ class SmashSelection(wx.Dialog):
 
 if __name__ == "__main__":
     path = "C:\\Python\\UniDec3\\unidec\\bin\\Example Data\\CDMS\\GroEL_CDMS_1.RAW"
-    from unidec.modules import CDEng
+    from modules import CDEng
 
     eng = CDEng.UniDecCD()
     eng.open_file(path)

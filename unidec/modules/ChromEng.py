@@ -1,13 +1,13 @@
 import os
 import numpy as np
-# import unidec.tools as ud
-# from .. import tools as ud
-# from unidec.metaunidec.mudeng import MetaUniDec
-# from unidec.engine import UniDec
-from .metaunidec.mudeng import MetaUniDec
-from .engine import UniDec
+# import tools as ud
+import tools as ud
+from metaunidec.mudeng import MetaUniDec
+# from engine import UniDec
+from metaunidec.mudeng import MetaUniDec
+from engine import UniDec
 
-import unidectools as ud
+# import unidectools as ud
 from copy import deepcopy
 
 chrom_file_exts = [".raw", ".Raw", ".RAW", ".d", ".mzML.gz", ".mzML"]

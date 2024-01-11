@@ -6,9 +6,9 @@ import numpy as np
 import matplotlib as mpl
 from scipy.interpolate import interp1d
 from wx.lib.agw import ultimatelistctrl as ulc
-from unidec import tools as ud
-from unidec.modules import PlottingWindow
-from unidec.modules import MassFitter
+import  tools as ud
+from modules import PlottingWindow
+from modules import MassFitter
 
 __author__ = 'Michael.Marty'
 

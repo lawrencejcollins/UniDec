@@ -1,7 +1,7 @@
 import pandas as pd
-from unidec.modules.biopolymertools import *
+from modules.biopolymertools import *
 import time
-from unidec.tools import nearestunsorted
+from tools import nearestunsorted
 import os
 import math
 

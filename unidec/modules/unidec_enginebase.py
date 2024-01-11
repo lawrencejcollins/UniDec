@@ -1,10 +1,10 @@
-from unidec.modules import unidecstructure, peakstructure, plot1d, plot2d
-from unidec import tools as ud
+from modules import unidecstructure, peakstructure, plot1d, plot2d
+import  tools as ud
 import numpy as np
 import os
 import time
 import webbrowser
-from unidec.modules.html_writer import *
+from modules.html_writer import *
 
 version = "6.0.4"
 
@@ -20,7 +20,7 @@ class UniDecEngine:
         UniDec Engine Base
 
         Consists of three main subclasses: Config, DataContiner, Peaks
-        
+
         Establishes some core shared functions
 
         :return: None

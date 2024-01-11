@@ -8,11 +8,11 @@ from multiprocessing import Process, Queue, cpu_count
 import sys
 import platform
 
-from unidec.modules.tims_import_wizard import TagTypes as tt
-from unidec.modules.tims_import_wizard import get_data_wrapper
+from modules.tims_import_wizard import TagTypes as tt
+from modules.tims_import_wizard import get_data_wrapper
 
 try:
-    from unidec.modules.waters_importer.WatersImporter import WatersDataImporter as WDI
+    from modules.waters_importer.WatersImporter import WatersDataImporter as WDI
 except Exception as e:
     print("Error importing Waters Importer, data_importer.py, ", e)
 

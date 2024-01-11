@@ -7,14 +7,14 @@ import matplotlib as mpl
 
 from pubsub import pub
 import multiprocessing
-from unidec.modules import unidecstructure, PlottingWindow
-from unidec.modules import miscwindows
-import unidec.tools as ud
+from modules import unidecstructure, PlottingWindow
+from modules import miscwindows
+import tools as ud
 import h5py
-from unidec.modules.hdf5_tools import replace_dataset, get_dataset
-from unidec.metaunidec import mudeng
-from unidec import MetaUniDec as mudpres
-from unidec.metaunidec.gui_elements.um_list_ctrl import *
+from modules.hdf5_tools import replace_dataset, get_dataset
+from metaunidec import mudeng
+import  MetaUniDec as mudpres
+from metaunidec.gui_elements.um_list_ctrl import *
 import threading
 import numpy as np
 import wx

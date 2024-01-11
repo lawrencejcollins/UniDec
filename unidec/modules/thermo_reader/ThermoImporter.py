@@ -21,7 +21,7 @@ class ThermoDataImporter:
             print("Delete your whole UniDec folder but keep the zip file.")
             print("Right click on the zip file and open properties. You should see a box to Unblock it. Check that.")
             print("Click ok. Unzip it again. Try it once more.")
-        from unidec.modules.thermo_reader.RawFileReader import RawFileReader as rr
+        from modules.thermo_reader.RawFileReader import RawFileReader as rr
         print("Reading Thermo Data:", path)
         self.msrun = rr(path)
         self.scanrange = self.msrun.scan_range()

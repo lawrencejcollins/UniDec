@@ -4,12 +4,12 @@ import wx
 import wx.lib.scrolledpanel as scrolled
 from matplotlib import rcParams
 
-from unidec.modules import PlottingWindow
-from unidec.modules import miscwindows
-from unidec.modules.gui_elements import peaklistsort, mainwindow_base
-from unidec.metaunidec.gui_elements.list_ctrls import ListCtrlPanel
-from unidec.metaunidec.gui_elements.ud_cont_meta import main_controls
-from unidec.metaunidec.gui_elements.ud_menu_meta import meta_menu
+from modules import PlottingWindow
+from modules import miscwindows
+from modules.gui_elements import peaklistsort, mainwindow_base
+from metaunidec.gui_elements.list_ctrls import ListCtrlPanel
+from metaunidec.gui_elements.ud_cont_meta import main_controls
+from metaunidec.gui_elements.ud_menu_meta import meta_menu
 
 __author__ = 'Michael.Marty'
 
